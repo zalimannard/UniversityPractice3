@@ -7,20 +7,25 @@ FanParameter::FanParameter(qint8 load)
 
 qreal FanParameter::fuzziIdle()
 {
-    return load_ < 20;
+    return 20;
 }
 
 qreal FanParameter::fuzziLow()
 {
-    return (load_ < 40) && (load_ >= 20);
+    return 40;
 }
 
 qreal FanParameter::fuzziNormal()
 {
-    return (load_ < 60) && (load_ >= 40);
+    return 60;
+}
+
+qreal FanParameter::fuzziMiddle()
+{
+    return 80;
 }
 
 qreal FanParameter::fuzziHigh()
 {
-    return load_ >= 80;
+    return 100;
 }

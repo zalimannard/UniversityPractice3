@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+#include "rule.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -17,5 +19,8 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    QVector<Rule> rules_;
+
+    QVector<Rule> genRules_();
 };
 #endif // MAINWINDOW_H

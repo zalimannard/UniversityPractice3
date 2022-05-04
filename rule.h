@@ -11,19 +11,12 @@
 class Rule
 {
 public:
-    Rule(CpuParameter cpu,
-         DiskParameter disk,
-         GpuParameter gpu,
-         PowerParameter power,
-         TemperatureParameter temperature,
-         FanParameter fan);
-
-    CpuParameter getCpu();
-    DiskParameter getDisk();
-    GpuParameter getGpu();
-    PowerParameter getPower();
-    TemperatureParameter getTemperature();
-    FanParameter getFan();
+    Rule(QString cpu,
+         QString disk,
+         QString gpu,
+         QString power,
+         QString temperature,
+         qreal fan);
 
 private:
     CpuParameter cpu_;
