@@ -6,6 +6,10 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->powerOn->setChecked(true);
+    ui->cpuText->setText(QString::number(ui->cpuSlider->value()));
+    ui->gpuText->setText(QString::number(ui->gpuSlider->value()));
+    ui->diskText->setText(QString::number(ui->diskSlider->value()));
 }
 
 MainWindow::~MainWindow()
@@ -13,7 +17,21 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-QVector<Rule> MainWindow::genRules_()
+QVector<qreal> MainWindow::fuzzi(QVector<Rule> rules, qint16 cpu, qint16 disk, qint16 gpu, bool power, qint16 temperature)
+{
+    QVector<qreal> pastFuzzi;
+    for (Rule rule : rules)
+    {
+        pastFuzzi.append(rule.fuzziCompareCpu(cpu));
+        pastFuzzi.append(rule.fuzziCompareDisk(disk));
+        pastFuzzi.append(rule.fuzziCompareGpu(gpu));
+        pastFuzzi.append(rule.fuzziComparePower(power));
+        pastFuzzi.append(rule.fuzziCompareTemperature(temperature));
+    }
+    return pastFuzzi;
+}
+
+QVector<Rule> MainWindow::genRules()
 {
     QVector<Rule> rules;
 
@@ -138,3 +156,40 @@ QVector<Rule> MainWindow::genRules_()
 
     return rules;
 }
+
+void MainWindow::on_pushButton_clicked()
+{
+    bool power = ui->powerOn->isChecked();
+    qreal cpu = ui->cpuSlider->value();
+    qreal gpu = ui->gpuSlider->value();
+    qreal disk = ui->diskSlider->value();
+    qreal temperature = ui->temperatureSpinBox->value();
+
+    QVector<Rule> rules = genRules();
+    QVector<qreal> pastFuzzi = fuzzi(rules, cpu, disk, gpu, power, temperature);
+}
+
+
+void MainWindow::on_powerOn_clicked()
+{
+    ui->powerOff->clicked(false);
+}
+
+
+void MainWindow::on_cpuSlider_valueChanged(int value)
+{
+    ui->cpuText->setText(QString::number(value));
+}
+
+
+void MainWindow::on_gpuSlider_valueChanged(int value)
+{
+    ui->gpuText->setText(QString::number(value));
+}
+
+
+void MainWindow::on_diskSlider_valueChanged(int value)
+{
+    ui->diskText->setText(QString::number(value));
+}
+

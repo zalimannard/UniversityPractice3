@@ -8,6 +8,8 @@
 #include "temperatureparameter.h"
 #include "fanparameter.h"
 
+#include <QString>
+
 class Rule
 {
 public:
@@ -18,13 +20,26 @@ public:
          QString temperature,
          qreal fan);
 
+    qreal fuzziCompareCpu(qreal value);
+    qreal fuzziCompareDisk(qreal value);
+    qreal fuzziCompareGpu(qreal value);
+    qreal fuzziComparePower(qreal value);
+    qreal fuzziCompareTemperature(qreal value);
+
+    QString getCpu();
+    QString getDisk();
+    QString getGpu();
+    QString getPower();
+    QString getTemperature();
+    qreal getFan();
+
 private:
-    CpuParameter cpu_;
-    DiskParameter disk_;
-    GpuParameter gpu_;
-    PowerParameter power_;
-    TemperatureParameter temperature_;
-    FanParameter fan_;
+    QString cpu_;
+    QString disk_;
+    QString gpu_;
+    QString power_;
+    QString temperature_;
+    qreal fan_;
 };
 
 #endif // RULE_H
