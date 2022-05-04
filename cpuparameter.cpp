@@ -5,17 +5,17 @@ CpuParameter::CpuParameter(qint8 load)
     load_ = load;
 }
 
-bool CpuParameter::isLow()
+qreal CpuParameter::fuzziLow()
 {
-    return load_ < 30;
+    return left(30, 40, load_);
 }
 
-bool CpuParameter::isMiddle()
+qreal CpuParameter::fuzziMiddle()
 {
-    return (load_ < 70) && (load_ >= 30);
+    return between(30, 40, 60, 70, load_);
 }
 
-bool CpuParameter::isHigh()
+qreal CpuParameter::fuzziHigh()
 {
-    return load_ >= 70;
+    return right(60, 70, load_);
 }

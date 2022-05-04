@@ -3,14 +3,16 @@
 
 #include <QtGlobal>
 
-class CpuParameter
+#include "fuzziparameter.h"
+
+class CpuParameter : FuzziParameter
 {
 public:
     CpuParameter(qint8 load);
 
-    bool isLow();
-    bool isMiddle();
-    bool isHigh();
+    qreal fuzziLow();
+    qreal fuzziMiddle();
+    qreal fuzziHigh();
 
 private:
     qint8 load_;

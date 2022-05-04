@@ -5,12 +5,27 @@ PowerParameter::PowerParameter(bool enabled)
     enabled_ = enabled;
 }
 
-bool PowerParameter::isEnabled()
+qreal PowerParameter::fuzziEnabled()
 {
-    return enabled_;
+    if (enabled_)
+    {
+        return right(0.1, 0.9, 1);
+    }
+    else
+    {
+        return left(0.1, 0.9, 0);
+    }
 }
 
-bool PowerParameter::isDisabled()
+qreal PowerParameter::fuzziDisabled()
 {
+    if (enabled_)
+    {
+        return left(0.1, 0.9, 0);
+    }
+    else
+    {
+        return right(0.1, 0.9, 1);
+    }
     return !enabled_;
 }

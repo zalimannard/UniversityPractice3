@@ -1,13 +1,17 @@
 #ifndef POWERPARAMETER_H
 #define POWERPARAMETER_H
 
-class PowerParameter
+#include <QtGlobal>
+
+#include "fuzziparameter.h"
+
+class PowerParameter : FuzziParameter
 {
 public:
     PowerParameter(bool enabled);
 
-    bool isEnabled();
-    bool isDisabled();
+    qreal fuzziEnabled();
+    qreal fuzziDisabled();
 
 private:
     bool enabled_;

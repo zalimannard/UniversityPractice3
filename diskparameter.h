@@ -3,13 +3,15 @@
 
 #include <QtGlobal>
 
-class DiskParameter
+#include "fuzziparameter.h"
+
+class DiskParameter : FuzziParameter
 {
 public:
     DiskParameter(qint8 load);
 
-    bool isNormal();
-    bool isHigh();
+    qreal fuzziLow();
+    qreal fuzziHigh();
 
 private:
     qint8 load_;

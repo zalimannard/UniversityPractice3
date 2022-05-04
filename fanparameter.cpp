@@ -1,35 +1,26 @@
 #include "fanparameter.h"
 
-FanParameter::FanParameter(CpuParameter cpu,
-                           DiskParameter disk,
-                           GpuParameter gpu,
-                           PowerParameter power,
-                           TemperatureParameter temperature)
+FanParameter::FanParameter(qint8 load)
 {
-    load_ = 0;
+    load_ = load;
 }
 
-bool FanParameter::isIdle()
+qreal FanParameter::fuzziIdle()
 {
     return load_ < 20;
 }
 
-bool FanParameter::isLow()
+qreal FanParameter::fuzziLow()
 {
     return (load_ < 40) && (load_ >= 20);
 }
 
-bool FanParameter::isNormal()
+qreal FanParameter::fuzziNormal()
 {
     return (load_ < 60) && (load_ >= 40);
 }
 
-bool FanParameter::isMiddle()
-{
-    return (load_ < 80) && (load_ >= 60);
-}
-
-bool FanParameter::isHigh()
+qreal FanParameter::fuzziHigh()
 {
     return load_ >= 80;
 }

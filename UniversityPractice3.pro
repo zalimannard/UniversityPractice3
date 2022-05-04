@@ -12,19 +12,23 @@ SOURCES += \
     cpuparameter.cpp \
     diskparameter.cpp \
     fanparameter.cpp \
+    fuzziparameter.cpp \
     gpuparameter.cpp \
     main.cpp \
     mainwindow.cpp \
     powerparameter.cpp \
+    rule.cpp \
     temperatureparameter.cpp
 
 HEADERS += \
     cpuparameter.h \
     diskparameter.h \
     fanparameter.h \
+    fuzziparameter.h \
     gpuparameter.h \
     mainwindow.h \
     powerparameter.h \
+    rule.h \
     temperatureparameter.h
 
 FORMS += \

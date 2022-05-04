@@ -3,14 +3,16 @@
 
 #include <QtGlobal>
 
-class GpuParameter
+#include "fuzziparameter.h"
+
+class GpuParameter : FuzziParameter
 {
 public:
     GpuParameter(qint8 load);
 
-    bool isLow();
-    bool isMiddle();
-    bool isHigh();
+    qreal fuzziLow();
+    qreal fuzziMiddle();
+    qreal fuzziHigh();
 
 private:
     qint8 load_;

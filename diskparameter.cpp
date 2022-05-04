@@ -5,12 +5,12 @@ DiskParameter::DiskParameter(qint8 load)
     load_ = load;
 }
 
-bool DiskParameter::isNormal()
+qreal DiskParameter::fuzziLow()
 {
-    return load_ < 50;
+    return left(45, 55, load_);
 }
 
-bool DiskParameter::isHigh()
+qreal DiskParameter::fuzziHigh()
 {
-    return load_ >= 50;
+    return right(45, 55, load_);
 }

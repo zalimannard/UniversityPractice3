@@ -5,22 +5,17 @@ TemperatureParameter::TemperatureParameter(qint16 temperature)
     temperature_ = temperature;
 }
 
-bool TemperatureParameter::isLow()
+qreal TemperatureParameter::fuzziLow()
 {
-    return temperature_ < 10;
+    return left(15, 25, temperature_);
 }
 
-bool TemperatureParameter::isNormal()
+qreal TemperatureParameter::fuzziMiddle()
 {
-    return (temperature_ < 50) && (temperature_ >= 10);
+    return between(15, 25, 50, 60, temperature_);
 }
 
-bool TemperatureParameter::isHigh()
+qreal TemperatureParameter::fuzziHigh()
 {
-    return (temperature_ < 90) && (temperature_ >= 50);
-}
-
-bool TemperatureParameter::isVeryHigh()
-{
-    return temperature_ >= 90;
+    return right(50, 60, temperature_);
 }

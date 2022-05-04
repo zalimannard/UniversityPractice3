@@ -3,15 +3,16 @@
 
 #include <QtGlobal>
 
-class TemperatureParameter
+#include "fuzziparameter.h"
+
+class TemperatureParameter : FuzziParameter
 {
 public:
     TemperatureParameter(qint16 temperature);
 
-    bool isLow();
-    bool isNormal();
-    bool isHigh();
-    bool isVeryHigh();
+    qreal fuzziLow();
+    qreal fuzziMiddle();
+    qreal fuzziHigh();
 
 private:
     qint16 temperature_;

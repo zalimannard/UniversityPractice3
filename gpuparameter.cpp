@@ -5,17 +5,17 @@ GpuParameter::GpuParameter(qint8 load)
     load_ = load;
 }
 
-bool GpuParameter::isLow()
+qreal GpuParameter::fuzziLow()
 {
-    return load_ < 20;
+    return left(20, 30, load_);
 }
 
-bool GpuParameter::isMiddle()
+qreal GpuParameter::fuzziMiddle()
 {
-    return (load_ < 60) && (load_ >= 20);
+    return between(20, 30, 60, 70, load_);
 }
 
-bool GpuParameter::isHigh()
+qreal GpuParameter::fuzziHigh()
 {
-    return load_ >= 60;
+    return right(60, 70, load_);
 }

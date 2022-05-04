@@ -3,26 +3,18 @@
 
 #include <QtGlobal>
 
-#include "cpuparameter.h"
-#include "diskparameter.h"
-#include "gpuparameter.h"
-#include "powerparameter.h"
-#include "temperatureparameter.h"
+#include "fuzziparameter.h"
 
-class FanParameter
+class FanParameter : FuzziParameter
 {
 public:
-    FanParameter(CpuParameter cpu,
-                 DiskParameter disk,
-                 GpuParameter gpu,
-                 PowerParameter power,
-                 TemperatureParameter temperature);
+    FanParameter(qint8 load);
 
-    bool isIdle();
-    bool isLow();
-    bool isNormal();
-    bool isMiddle();
-    bool isHigh();
+    qreal fuzziIdle();
+    qreal fuzziLow();
+    qreal fuzziNormal();
+    qreal fuzziMiddle();
+    qreal fuzziHigh();
 
 private:
     qint8 load_;
