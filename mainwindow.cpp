@@ -1,3 +1,5 @@
+#include <QMessageBox>
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -17,18 +19,47 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-QVector<qreal> MainWindow::fuzzi(QVector<Rule> rules, qint16 cpu, qint16 disk, qint16 gpu, bool power, qint16 temperature)
+QVector<QVector<qreal> > MainWindow::fuzzi(QVector<Rule> rules, qint16 cpu, qint16 disk, qint16 gpu, bool power, qint16 temperature)
 {
-    QVector<qreal> pastFuzzi;
+    QVector<QVector<qreal> > pastFuzzi;
     for (Rule rule : rules)
     {
-        pastFuzzi.append(rule.fuzziCompareCpu(cpu));
-        pastFuzzi.append(rule.fuzziCompareDisk(disk));
-        pastFuzzi.append(rule.fuzziCompareGpu(gpu));
-        pastFuzzi.append(rule.fuzziComparePower(power));
-        pastFuzzi.append(rule.fuzziCompareTemperature(temperature));
+        QVector<qreal> partFuzzi;
+        partFuzzi.append(rule.fuzziCompareCpu(cpu));
+        partFuzzi.append(rule.fuzziCompareDisk(disk));
+        partFuzzi.append(rule.fuzziCompareGpu(gpu));
+        partFuzzi.append(rule.fuzziComparePower((bool)power));
+        partFuzzi.append(rule.fuzziCompareTemperature(temperature));
+        pastFuzzi.append(partFuzzi);
     }
     return pastFuzzi;
+}
+
+QVector<qreal> MainWindow::agregate(QVector<QVector<qreal> > dataPastFuzzi)
+{
+    QVector<qreal> answer;
+    for (QVector<qreal> partDataPastFuzzi : dataPastFuzzi)
+    {
+        qreal min = 999999999;
+        for (qreal n : partDataPastFuzzi)
+        {
+            min = qMin(min, n);
+        }
+        answer.append(min);
+    }
+    return answer;
+}
+
+qreal MainWindow::defuzzi(QVector<qreal> data, QVector<Rule> rules)
+{
+    qreal sumNumerator = 0;
+    qreal sumDenominator = 0;
+    for (auto i = 0; i < data.size(); ++i)
+    {
+        sumNumerator += data.at(i) * rules[i].getFan();
+        sumDenominator += data.at(i);
+    }
+    return sumNumerator / sumDenominator;
 }
 
 QVector<Rule> MainWindow::genRules()
@@ -36,7 +67,7 @@ QVector<Rule> MainWindow::genRules()
     QVector<Rule> rules;
 
     //                cpu    disk   gpu    power      temperature
-    rules.append(Rule("low", "low", "low", "disable", "low", 0));
+    rules.append(Rule("low", "low", "low", "enable", "low", 0));
     rules.append(Rule("low", "low", "low", "disable", "middle", 0));
     rules.append(Rule("low", "low", "low", "disable", "high", 0));
     rules.append(Rule("low", "low", "low", "enable", "low", 0));
@@ -166,13 +197,11 @@ void MainWindow::on_pushButton_clicked()
     qreal temperature = ui->temperatureSpinBox->value();
 
     QVector<Rule> rules = genRules();
-    QVector<qreal> pastFuzzi = fuzzi(rules, cpu, disk, gpu, power, temperature);
-}
-
-
-void MainWindow::on_powerOn_clicked()
-{
-    ui->powerOff->clicked(false);
+    QVector<QVector<qreal> > pastFuzzi = fuzzi(rules, cpu, disk, gpu, power, temperature);
+    QVector<qreal> pastAgreg = agregate(pastFuzzi);
+    qreal answer = defuzzi(pastAgreg, rules);
+    QMessageBox::about(this, tr("О MapDesigner"),
+                QString::number(answer));
 }
 
 

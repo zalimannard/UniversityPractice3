@@ -23,7 +23,7 @@ public:
     qreal fuzziCompareCpu(qreal value);
     qreal fuzziCompareDisk(qreal value);
     qreal fuzziCompareGpu(qreal value);
-    qreal fuzziComparePower(qreal value);
+    qreal fuzziComparePower(bool value);
     qreal fuzziCompareTemperature(qreal value);
 
     QString getCpu();

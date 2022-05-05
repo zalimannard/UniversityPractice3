@@ -29,16 +29,16 @@ qreal Rule::fuzziCompareCpu(qreal value)
     {
         return CpuParameter(value).fuzziHigh();
     }
-    return 0;
+    return 999999;
 }
 
 qreal Rule::fuzziCompareDisk(qreal value)
 {
-    if (getCpu() == "low")
+    if (getDisk() == "low")
     {
         return DiskParameter(value).fuzziLow();
     }
-    else if (getCpu() == "high")
+    else if (getDisk() == "high")
     {
         return DiskParameter(value).fuzziHigh();
     }
@@ -47,28 +47,28 @@ qreal Rule::fuzziCompareDisk(qreal value)
 
 qreal Rule::fuzziCompareGpu(qreal value)
 {
-    if (getCpu() == "low")
+    if (getGpu() == "low")
     {
         return GpuParameter(value).fuzziLow();
     }
-    else if (getCpu() == "middle")
+    else if (getGpu() == "middle")
     {
         return GpuParameter(value).fuzziMiddle();
     }
-    else if (getCpu() == "high")
+    else if (getGpu() == "high")
     {
         return GpuParameter(value).fuzziHigh();
     }
     return 0;
 }
 
-qreal Rule::fuzziComparePower(qreal value)
+qreal Rule::fuzziComparePower(bool value)
 {
-    if (getCpu() == "enable")
+    if (getPower() == "enable")
     {
         return PowerParameter(value).fuzziEnabled();
     }
-    else if (getCpu() == "disable")
+    else if (getPower() == "disable")
     {
         return PowerParameter(value).fuzziDisabled();
     }
@@ -77,11 +77,11 @@ qreal Rule::fuzziComparePower(qreal value)
 
 qreal Rule::fuzziCompareTemperature(qreal value)
 {
-    if (getCpu() == "low")
+    if (getTemperature() == "low")
     {
         return TemperatureParameter(value).fuzziLow();
     }
-    else if (getCpu() == "middle")
+    else if (getTemperature() == "middle")
     {
         return TemperatureParameter(value).fuzziMiddle();
     }

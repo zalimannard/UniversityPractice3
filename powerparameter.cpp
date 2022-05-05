@@ -27,5 +27,4 @@ qreal PowerParameter::fuzziDisabled()
     {
         return right(0.1, 0.9, 1);
     }
-    return !enabled_;
 }

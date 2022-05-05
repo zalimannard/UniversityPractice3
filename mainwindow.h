@@ -33,6 +33,8 @@ private:
     QVector<Rule> rules_;
 
     QVector<Rule> genRules();
-    QVector<qreal> fuzzi(QVector<Rule> rules, qint16 cpu, qint16 disk, qint16 gpu, bool power, qint16 temp);
+    QVector<QVector<qreal> > fuzzi(QVector<Rule> rules, qint16 cpu, qint16 disk, qint16 gpu, bool power, qint16 temp);
+    QVector<qreal> agregate(QVector<QVector<qreal> > dataPastFuzzi);
+    qreal defuzzi(QVector<qreal> data, QVector<Rule> rules);
 };
 #endif // MAINWINDOW_H
