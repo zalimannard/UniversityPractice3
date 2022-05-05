@@ -7,10 +7,10 @@ DiskParameter::DiskParameter(qint8 load)
 
 qreal DiskParameter::fuzziLow()
 {
-    return left(45, 55, load_);
+    return left(25, 75, load_);
 }
 
 qreal DiskParameter::fuzziHigh()
 {
-    return right(45, 55, load_);
+    return right(25, 75, load_);
 }

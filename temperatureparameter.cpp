@@ -7,15 +7,15 @@ TemperatureParameter::TemperatureParameter(qint16 temperature)
 
 qreal TemperatureParameter::fuzziLow()
 {
-    return left(15, 25, temperature_);
+    return left(15, 45, temperature_);
 }
 
 qreal TemperatureParameter::fuzziMiddle()
 {
-    return between(15, 25, 50, 60, temperature_);
+    return between(15, 45, 50, 80, temperature_);
 }
 
 qreal TemperatureParameter::fuzziHigh()
 {
-    return right(50, 60, temperature_);
+    return right(50, 80, temperature_);
 }

@@ -7,15 +7,15 @@ CpuParameter::CpuParameter(qint8 load)
 
 qreal CpuParameter::fuzziLow()
 {
-    return left(30, 40, load_);
+    return left(10, 40, load_);
 }
 
 qreal CpuParameter::fuzziMiddle()
 {
-    return between(30, 40, 60, 70, load_);
+    return between(10, 40, 50, 90, load_);
 }
 
 qreal CpuParameter::fuzziHigh()
 {
-    return right(60, 70, load_);
+    return right(50, 90, load_);
 }

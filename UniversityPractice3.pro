@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui charts
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -17,6 +17,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     powerparameter.cpp \
+    resultwindow.cpp \
     rule.cpp \
     temperatureparameter.cpp
 
@@ -28,11 +29,13 @@ HEADERS += \
     gpuparameter.h \
     mainwindow.h \
     powerparameter.h \
+    resultwindow.h \
     rule.h \
     temperatureparameter.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    resultwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -1,31 +1,36 @@
 #include "fanparameter.h"
 
-FanParameter::FanParameter(qint8 load)
+FanParameter::FanParameter()
 {
-    load_ = load;
+
 }
 
 qreal FanParameter::fuzziIdle()
 {
-    return 20;
+    return 0;
 }
 
 qreal FanParameter::fuzziLow()
 {
-    return 40;
+    return 20;
 }
 
 qreal FanParameter::fuzziNormal()
 {
-    return 60;
+    return 40;
 }
 
 qreal FanParameter::fuzziMiddle()
 {
-    return 80;
+    return 60;
 }
 
 qreal FanParameter::fuzziHigh()
+{
+    return 80;
+}
+
+qreal FanParameter::fuzziVeryHigh()
 {
     return 100;
 }

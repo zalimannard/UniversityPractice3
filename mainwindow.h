@@ -4,6 +4,7 @@
 #include <QMainWindow>
 
 #include "rule.h"
+#include "resultwindow.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -31,6 +32,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QVector<Rule> rules_;
+    ResultWindow* resultWindow;
 
     QVector<Rule> genRules();
     QVector<QVector<qreal> > fuzzi(QVector<Rule> rules, qint16 cpu, qint16 disk, qint16 gpu, bool power, qint16 temp);

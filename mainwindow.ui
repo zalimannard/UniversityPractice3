@@ -351,6 +351,12 @@
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
          <widget class="QDoubleSpinBox" name="temperatureSpinBox">
+          <property name="wrapping">
+           <bool>true</bool>
+          </property>
+          <property name="readOnly">
+           <bool>false</bool>
+          </property>
           <property name="minimum">
            <double>-1000.000000000000000</double>
           </property>

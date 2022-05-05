@@ -8,13 +8,14 @@
 class FanParameter : FuzziParameter
 {
 public:
-    FanParameter(qint8 load);
+    FanParameter();
 
     qreal fuzziIdle();
     qreal fuzziLow();
     qreal fuzziNormal();
     qreal fuzziMiddle();
     qreal fuzziHigh();
+    qreal fuzziVeryHigh();
 
 private:
     qint8 load_;
