@@ -29,20 +29,20 @@ void ResultWindow::setGraphValue(QVector<QPair<QString, qreal> > values)
 {
     QBarSeries *series = new QBarSeries();
 
-    for (QPair<QString, qreal> value : values)
-    {
-        QBarSet *barSet = new QBarSet(value.first);
-        *barSet << value.second;
-        series->append(barSet);
-    }
-
     QChart *chart = new QChart();
     chart->addSeries(series);
     chart->setTitle("Влияние отдельных частей");
     chart->setAnimationOptions(QChart::SeriesAnimations);
 
     QStringList categories;
-    categories << "01.01.2014";
+
+    QBarSet *barSet = new QBarSet("Значения");
+    for (QPair<QString, qreal> value : values)
+    {
+        *barSet << value.second;
+        categories << value.first;
+    }
+    series->append(barSet);
     QBarCategoryAxis *axisX = new QBarCategoryAxis();
     axisX->append(categories);
     chart->addAxis(axisX, Qt::AlignBottom);
@@ -52,9 +52,6 @@ void ResultWindow::setGraphValue(QVector<QPair<QString, qreal> > values)
     axisY->setRange(0, 1);
     chart->addAxis(axisY, Qt::AlignLeft);
     series->attachAxis(axisY);
-
-    chart->legend()->setVisible(true);
-    chart->legend()->setAlignment(Qt::AlignRight);
 
     QChartView *chartView = new QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
